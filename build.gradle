@@ -1,0 +1,74 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        gradlePluginPortal()
+        google()
+    }
+}
+
+allprojects {
+    apply plugin: "java-library"
+    apply plugin: "eclipse"
+    apply plugin: "idea"
+
+    version = '1.0' // what's this?
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        gradlePluginPortal()
+        google()
+    }
+}
+
+// this is core ( = platform-independent code?)
+project(":clueless-core") {
+    apply plugin: "java-library"
+
+    dependencies {
+        implementation project(":shared") // here are some shared utilities
+    }
+}
+
+// this is shared code between core and visualTesting
+project(":shared") {
+    apply plugin: "java-library"
+
+    dependencies {} // in this oversimplified example here are no dependencies
+}
+
+// core + lwjgl3 backend
+project(":clueless-lwjgl3") {
+    apply plugin: "java-library"
+
+    dependencies {
+        implementation project(":clueless-core") // it is core module
+        implementation project(":shared") // here are some shared utilities
+
+    }
+}
+
+// this is module with visual tests which depends on visualTesting as a host + lwjgl3 backend
+project(":clueless-tests") {
+    apply plugin: "java-library"
+
+    dependencies {
+        implementation project(":visualTesting") // it is testing host
+        implementation project(":clueless-core") // it is core module, which classes are tested in this subproject
+//        implementation project(":shared") // here are some shared utilities
+
+    }
+}
+
+// visualTesting core + lwjgl3 backend
+project(":visualTesting") {
+    apply plugin: "java-library"
+
+    dependencies {
+        implementation project(":shared") // here are some shared utilities
+    }
+}

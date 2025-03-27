@@ -1,0 +1,32 @@
+apply plugin: "application"
+
+sourceSets.main.java.srcDirs = ["src/"]
+sourceSets.main.resources.srcDirs = ["../assets"]
+
+application.mainClassName = "kww.visualTesting.Launcher"
+
+import org.gradle.internal.os.OperatingSystem
+
+// Runs the app. Do not run tasks from here because it triggers all 'run' tasks to be executed.
+run {
+    if (OperatingSystem.current() == OperatingSystem.MAC_OS) jvmArgs += "-XstartOnFirstThread"
+    group "other"
+}
+
+// Creates jar. Do not run tasks from here because it triggers all 'jar' tasks to be executed.
+jar {
+    duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
+    manifest {
+        attributes 'Main-Class': project.mainClassName
+    }
+    from files(sourceSets.main.output.classesDirs)
+    from files(sourceSets.main.output.resourcesDir)
+    dependsOn configurations.runtimeClasspath
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+// Equivalent to the jar task; here for compatibility with gdx-setup.
+task dist(dependsOn: jar)
+

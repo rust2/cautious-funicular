@@ -1,0 +1,3 @@
+include 'visualTesting'
+include 'clueless-core', 'clueless-lwjgl3', 'clueless-tests'
+include 'shared'
