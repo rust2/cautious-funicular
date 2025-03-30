@@ -59,7 +59,7 @@ project(":clueless-tests") {
     dependencies {
         implementation project(":visualTesting") // it is testing host
         implementation project(":clueless-core") // it is core module, which classes are tested in this subproject
-//        implementation project(":shared") // here are some shared utilities
+        implementation project(":shared") // here are some shared utilities
 
     }
 }

@@ -1,11 +1,11 @@
 package kww.clueless.visualTesting;
 
-//import kww.shared.SomeSharedUtility;
+import kww.shared.SomeSharedUtility;
 import kww.visualTesting.Launcher;
 
 public class TestBrowserLauncher extends Launcher {
     public static void main(String[] args) {
-//        SomeSharedUtility.println("Dependency from TestBrowserLauncher launcher (clueless-tests)");
+        SomeSharedUtility.println("Dependency from TestBrowserLauncher launcher (clueless-tests)");
         new TestBrowserLauncher().createVisualTestingHost();
     }
 
