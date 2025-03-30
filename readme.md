@@ -1,3 +1,6 @@
+### This repo demonstrates imaginary external library which appears after IDEA 2023.2.8.win
+
+---
 ## steps to reproduce
 1. Get latest version of IntelliJ IDEA (newer than `2023.2.8.win`)
 2. Import this project
