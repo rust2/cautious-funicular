@@ -1,4 +1,7 @@
-### This repo demonstrates imaginary external library which appears after IDEA 2023.2.8.win
+After I updated IDEA from `2022.1.4` to `2024.3.4.1` (latest), my "project" kinda broke.
+When I go to declaration of some methods it shows me decompiled class instead of the real source.
+When I hover over these methods, tooltip shows that method comes from jar file.
+This repo demonstrates imaginary external library which appears after IDEA `2023.2.8.win`.
 
 ---
 ## steps to reproduce
